@@ -203,24 +203,6 @@ npm run build
 
 ---
 
-## Demo Script (for judges)
-
-1. Open a Rumble video and start playback
-2. Show Settings:
-   - Auto-tip enabled
-   - small demo amounts (e.g., 0.01)
-   - non-zero monthly cap
-3. Cross watch milestone trigger and show:
-   - background logs / decision reasoning
-   - in-page toast feedback
-4. Open History tab and show confirmed local tips
-5. Open Agentic tab and show insights/recommendations computed from that same history
-6. Trigger like/comment to demonstrate multi-trigger behavior
-
-This sequence demonstrates the full loop: **signal → decision → transfer → feedback → analytics**.
-
----
-
 ## Safety & Reliability Principles
 
 - Budget-aware decisions with cap checks
@@ -237,19 +219,6 @@ This sequence demonstrates the full loop: **signal → decision → transfer →
 - Additional chain/token paths and gas prechecks can be expanded
 - A/B evaluation of “AI lift” (retention/spend efficiency) can be added for stronger quantifiable impact
 - Optional richer creator preference model and per-category weighting
-
----
-
-## Why this project is judge-worthy
-
-Tipsy is not a prototype-only UI. It is a working end-to-end system that combines:
-
-- Browser instrumentation
-- Wallet execution infrastructure
-- AI reasoning with deterministic safeguards
-- Persistent user-facing analytics
-
-It demonstrates product thinking, engineering depth, and practical reliability in one cohesive extension.
 
 ---
 
