@@ -73,6 +73,8 @@ chrome.runtime.onMessage.addListener((message) => {
       showToast("Tip confirmed");
     } else if (status === "failed") {
       showToast("Tip failed — transfer error");
+    } else if (status === "pending") {
+      showToast("Tip pending — already submitted");
     } else if (status === "skipped") {
       showToast(
         `Tip skipped — ${String(reason || "recipient unavailable").replaceAll("_", " ")}`,

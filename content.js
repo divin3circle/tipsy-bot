@@ -1035,6 +1035,20 @@ function handleTipToastMessage(payload = {}) {
     return;
   }
 
+  if (status === "pending") {
+    const error = String(
+      payload?.error ||
+        "Transaction already submitted to the network. Waiting for confirmation.",
+    ).trim();
+    showPageToast({
+      title: "Tip pending",
+      body: error,
+      variant: "warning",
+      durationMs: 5200,
+    });
+    return;
+  }
+
   if (status === "unresolved" || status === "skipped") {
     const error = String(
       payload?.error || "Recipient unavailable for this creator right now.",

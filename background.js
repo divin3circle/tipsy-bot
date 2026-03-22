@@ -737,6 +737,66 @@ async function handleTipTrigger(type, payload, sender) {
     { network: rules.network || "polygon" },
   );
   if (!tx.success) {
+    if (String(tx?.reason || "") === "tx_already_known") {
+      const pendingMessage = String(
+        tx?.error ||
+          "Transaction already submitted to the network. Waiting for confirmation.",
+      );
+
+      logRecipientTelemetry("tip_transfer_pending_duplicate", {
+        creatorId,
+        token: tip.token_type,
+        recipientSource: recipientResolution.source,
+        network: rules.network || "polygon",
+        triggerType: tip.trigger_type,
+        reason: "tx_already_known",
+      });
+
+      await chrome.storage.session.set({
+        currentVideo: {
+          title: payload?.videoTitle || "",
+          creatorName: payload?.creatorName || "",
+          watchPercent: Math.round(payload?.watchPercent || 0),
+          lastTip: existingLastTip,
+          recipientStatus: "pending",
+          recipientReason: "tx_already_known",
+        },
+      });
+
+      chrome.runtime
+        .sendMessage({
+          type: "TIP_RESULT",
+          payload: {
+            status: "pending",
+            reason: "tx_already_known",
+            error: pendingMessage,
+            creator_id: creatorId,
+            creator_name: tip.creator_name,
+            amount_usdt: tip.amount_usdt,
+            token_type: tip.token_type,
+            trigger_type: tip.trigger_type,
+          },
+        })
+        .catch(() => {});
+
+      await sendTipPageToast(sender, {
+        status: "pending",
+        creator_name: tip.creator_name,
+        token_type: tip.token_type,
+        trigger_type: tip.trigger_type,
+        amount_usdt: tip.amount_usdt,
+        error: pendingMessage,
+        reason: "tx_already_known",
+      });
+
+      return {
+        ok: true,
+        tipped: false,
+        pending: true,
+        reason: "tx_already_known",
+      };
+    }
+
     const transferError = String(tx?.error || "WDK tip failed");
 
     logRecipientTelemetry("tip_transfer_failed", {

@@ -512,6 +512,15 @@ export async function executeWDKTip(
       };
     }
 
+    if (/already known|known transaction/i.test(rawMessage)) {
+      return {
+        success: false,
+        error:
+          "Transaction already submitted to the network. Waiting for confirmation.",
+        reason: "tx_already_known",
+      };
+    }
+
     return {
       success: false,
       error: rawMessage,
