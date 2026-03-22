@@ -3,6 +3,8 @@
 Tipsy is a Chrome extension that turns passive viewing into meaningful creator support.
 It watches engagement signals (watch milestones, likes, comments), makes a policy-safe tip decision, and executes tips through wallet rails with transparent user controls.
 
+![Tipsy Bot Banner](assets/banner.png)
+
 Tipsy demonstrates:
 
 - Real-time client instrumentation on live video pages
