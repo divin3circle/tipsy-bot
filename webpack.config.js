@@ -52,6 +52,11 @@ export default {
       Buffer: ["buffer", "Buffer"],
       process: "process/browser",
     }),
+    // Exclude test files and cryptographic key files from bundle
+    new webpack.IgnorePlugin({
+      resourceRegExp:
+        /(test|__tests__|\.test\.|\.spec\.|\.pem|\.key|\.crt|\.cert)$/,
+    }),
   ],
   optimization: {
     minimize: false,
