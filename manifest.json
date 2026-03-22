@@ -1,0 +1,46 @@
+{
+  "manifest_version": 3,
+  "name": "Tipsy",
+  "version": "0.1.0",
+  "description": "Smart AI-powered tipping for Rumble creators",
+  "permissions": ["storage", "alarms", "scripting", "activeTab", "tabs"],
+  "host_permissions": [
+    "https://*.rumble.com/*",
+    "https://generativelanguage.googleapis.com/*",
+    "https://data.mongodb-api.com/*",
+    "https://polygon-rpc.com/*",
+    "https://blockstream.info/*",
+    "https://api.mainnet-beta.solana.com/*",
+    "https://api.trongrid.io/*"
+  ],
+  "background": {
+    "service_worker": "dist/background.bundle.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://*.rumble.com/*"],
+      "js": ["dist/content.bundle.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_popup": "popup/index.html",
+    "default_icon": {
+      "16": "assets/icons/16.png",
+      "48": "assets/icons/48.png",
+      "128": "assets/icons/128.png"
+    }
+  },
+  "icons": {
+    "16": "assets/icons/16.png",
+    "48": "assets/icons/48.png",
+    "128": "assets/icons/128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["assets/*.svg", "assets/*.jpg", "assets/*.png"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}
