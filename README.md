@@ -176,10 +176,10 @@ Create/update `.env` in the project root:
 
 ```env
 VITE_GEMINI_API_KEY=...
-VITE_ATLAS_APP_ID=...
-VITE_ATLAS_API_KEY=...
-VITE_ATLAS_DATA_SOURCE=brewtip
-VITE_ATLAS_DATABASE=tipsy
+VITE_ATLAS_APP_ID=...#optional
+VITE_ATLAS_API_KEY=...#optional
+VITE_ATLAS_DATA_SOURCE=brewtip #optional
+VITE_ATLAS_DATABASE=tipsy#optional
 ```
 
 > Notes
